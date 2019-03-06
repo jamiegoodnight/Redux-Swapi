@@ -17,11 +17,12 @@ export const fetchPeople = () => dispatch => {
     dispatch({type: FETCH_PEOPLE_START});
     axios 
     .get(`https://swapi.co/api/people/`)
-    .then(res => {
-        dispatch({type: FETCH_PEOPLE_SUCCESS, payload: res.data})
+    .then( ({data}) => {
+        console.log(data)
+        dispatch({type: FETCH_PEOPLE_SUCCESS, payload: data.results})
     })
     .catch(err => {
-        dispatch({type: FETCH_PEOPLE_FAILURE, payload: "error"})
+        dispatch({type: FETCH_PEOPLE_FAILURE, payload: err})
     })
 }   
 
